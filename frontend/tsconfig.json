@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "None",       // Usamos None ou ESNext. Como estamos rodando direto no navegador sem bundler (Vite/Webpack), None compila tudo sem imports/exports que causariam erros CORS locais.
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
