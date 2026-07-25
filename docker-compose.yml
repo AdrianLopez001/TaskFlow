@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # SERVIÇO DE BANCO DE DADOS (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    container_name: taskflow-db
+    environment:
+      POSTGRES_DB: taskflow_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # Garante que outros containers saibam quando o PostgreSQL está PRONTO para receber conexões,
+    # não apenas quando o container foi iniciado.
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d taskflow_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # SERVIÇO DO BACKEND (API Spring Boot)
+  api:
+    build: .
+    container_name: taskflow-api
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: taskflow_db
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    # A diretiva depende do banco de dados estar 100% saudável antes do Spring iniciar.
+    # Isso evita falhas na conexão inicial de persistência (Connection Refused).
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
