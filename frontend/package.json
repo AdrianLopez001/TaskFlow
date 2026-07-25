@@ -1,0 +1,11 @@
+{
+  "name": "taskflow-frontend",
+  "version": "1.0.0",
+  "description": "TaskFlow Frontend Study Client - TypeScript Migration",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
