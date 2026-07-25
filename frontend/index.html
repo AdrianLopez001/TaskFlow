@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TaskFlow - Gerenciador acadêmico e profissional de tarefas para estudos full stack.">
+    <title>TaskFlow - Trilha de Aprendizado</title>
+    <!-- Fonte Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Cabeçalho Principal -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <div class="logo-icon">🚀</div>
+                <h1>Task<span>Flow</span></h1>
+            </div>
+            <div class="header-stats">
+                <div class="stat-card" id="stat-total">
+                    <span class="stat-label">Total</span>
+                    <span class="stat-val">0</span>
+                </div>
+                <div class="stat-card" id="stat-pending">
+                    <span class="stat-label">Pendentes</span>
+                    <span class="stat-val">0</span>
+                </div>
+                <div class="stat-card" id="stat-completed">
+                    <span class="stat-label">Concluídas</span>
+                    <span class="stat-val">0</span>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="btn-new-task">+ Nova Tarefa</button>
+        </div>
+    </header>
+
+    <!-- Layout Principal -->
+    <main class="app-main">
+        <div class="board-grid">
+            
+            <!-- Coluna: PENDENTES -->
+            <section class="board-column" id="col-pending">
+                <div class="column-header">
+                    <div class="column-title">
+                        <span class="indicator indicator-pending"></span>
+                        <h2>Pendente</h2>
+                    </div>
+                    <span class="column-count" id="count-pending">0</span>
+                </div>
+                <div class="task-list" id="list-pending">
+                    <!-- Inserido dinamicamente via JS -->
+                </div>
+            </section>
+
+            <!-- Coluna: EM PROGRESSO -->
+            <section class="board-column" id="col-progress">
+                <div class="column-header">
+                    <div class="column-title">
+                        <span class="indicator indicator-progress"></span>
+                        <h2>Em Progresso</h2>
+                    </div>
+                    <span class="column-count" id="count-progress">0</span>
+                </div>
+                <div class="task-list" id="list-progress">
+                    <!-- Inserido dinamicamente via JS -->
+                </div>
+            </section>
+
+            <!-- Coluna: CONCLUÍDAS -->
+            <section class="board-column" id="col-completed">
+                <div class="column-header">
+                    <div class="column-title">
+                        <span class="indicator indicator-completed"></span>
+                        <h2>Concluída</h2>
+                    </div>
+                    <span class="column-count" id="count-completed">0</span>
+                </div>
+                <div class="task-list" id="list-completed">
+                    <!-- Inserido dinamicamente via JS -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal de Criação / Edição de Tarefa -->
+    <div class="modal-overlay" id="task-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-title">Nova Tarefa</h3>
+                <button class="btn-close" id="btn-close-modal">&times;</button>
+            </div>
+            <form id="task-form">
+                <input type="hidden" id="task-id">
+                
+                <div class="form-group">
+                    <label for="title-input">Título <span class="required">*</span></label>
+                    <input type="text" id="title-input" placeholder="Digite o título da tarefa..." required maxlength="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="desc-input">Descrição</label>
+                    <textarea id="desc-input" rows="3" placeholder="Descreva os detalhes da tarefa..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="status-select">Status</label>
+                        <select id="status-select">
+                            <option value="PENDING">Pendente</option>
+                            <option value="IN_PROGRESS">Em Progresso</option>
+                            <option value="COMPLETED">Concluída</option>
+                        </select>
+                    </div>
+                    <div class="form-group col">
+                        <label for="priority-select">Prioridade</label>
+                        <select id="priority-select">
+                            <option value="LOW">Baixa</option>
+                            <option value="MEDIUM" selected>Média</option>
+                            <option value="HIGH">Alta</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btn-submit-task">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script principal (temporariamente app.js para vanilla JS) -->
+    <script src="app.js"></script>
+</body>
+</html>
