@@ -119,7 +119,6 @@ Cada commit foca em um único arquivo, classe ou funcionalidade lógica!
 ---
 
 ## 🔮 Próximos Passos de Evolução (Estudo Avançado)
-Para continuar evoluindo de Júnior para Pleno, sugerimos implementar neste mesmo repositório:
 1. **Segurança**: Adicionar Spring Security com autenticação Stateless via tokens JWT.
 2. **Testes Unitários**: Criar testes com JUnit 5 e Mockito na camada `TaskService`.
 3. **Paginação**: Adicionar suporte a paginação (`Pageable`) e ordenação na listagem de tarefas.
